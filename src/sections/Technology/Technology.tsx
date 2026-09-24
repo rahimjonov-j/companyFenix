@@ -61,9 +61,9 @@ export const Technology = () => {
   }, []);
 
   return (
-    <section id="technology" ref={containerRef} className="relative h-screen bg-fenix-dark flex flex-col justify-center overflow-hidden">
+    <section id="technology" ref={containerRef} className="relative h-screen bg-fenix-dark flex flex-col items-center justify-center overflow-hidden">
       
-      <div className="absolute top-16 md:top-24 left-0 right-0 px-6 md:px-12 z-20 text-center">
+      <div className="relative w-full px-6 md:px-12 z-20 text-center mb-10 md:mb-16 mt-16 md:mt-0">
         <h2 className="text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight text-white mb-2 md:mb-4">
           His qilish mumkin bo'lgan texnologiya.
         </h2>
@@ -73,7 +73,7 @@ export const Technology = () => {
       </div>
 
       {/* Filter stages row */}
-      <div className="relative w-full max-w-7xl mx-auto px-6 z-10 flex items-center justify-between" style={{ marginTop: '0', height: '220px' }}>
+      <div className="relative w-full max-w-7xl mx-auto px-2 md:px-6 z-10 flex items-center justify-between" style={{ height: '260px' }}>
         
         {/* Background Pipe / Track */}
         <div className="absolute left-6 right-6 h-2 top-1/2 -translate-y-1/2 bg-white/5 rounded-full overflow-hidden">
