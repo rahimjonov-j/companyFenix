@@ -33,17 +33,19 @@ export const WaterProblem = () => {
 
       gsap.set(text2Ref.current, { opacity: 0, y: 50 });
       gsap.set(particlesContainerRef.current, { opacity: 0, scale: 0.5 });
-      gsap.set(labelsRef.current?.children, { opacity: 0, x: -10 });
+      if (labelsRef.current) {
+        gsap.set(Array.from(labelsRef.current.children), { opacity: 0, x: -10 });
+      }
 
       tl.to(text1Ref.current,  { opacity: 0, y: -50, duration: 1 })
         .to(dropletRef.current, { scale: 3, duration: 2 }, '<')
         .to(text2Ref.current,   { opacity: 1, y: 0,  duration: 1 }, '-=1')
         .to(dropletRef.current, { rotation: 45, duration: 2 }, '-=0.5')
         .to(particlesContainerRef.current, { opacity: 1, scale: 1, duration: 1 }, '-=1.5')
-        .to(labelsRef.current?.children || [], { opacity: 1, x: 0, duration: 0.8, stagger: 0.2 }, '-=1')
+        .to(labelsRef.current ? Array.from(labelsRef.current.children) : [], { opacity: 1, x: 0, duration: 0.8, stagger: 0.2 }, '-=1')
         .to(dropletRef.current, { scale: 10, opacity: 0, duration: 1.5 })
         .to(text2Ref.current,   { opacity: 0, y: -50, duration: 1 }, '<')
-        .to(labelsRef.current?.children || [], { opacity: 0, duration: 0.5 }, '<');
+        .to(labelsRef.current ? Array.from(labelsRef.current.children) : [], { opacity: 0, duration: 0.5 }, '<');
     }, containerRef);
 
     return () => ctx.revert();
