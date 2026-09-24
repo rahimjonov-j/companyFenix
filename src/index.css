@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --color-fenix-white: #FFFFFF;
+  --color-fenix-ice: #EAF7FF;
+  --color-fenix-soft-blue: #CFEFFF;
+  --color-fenix-cyan: #65D8F5;
+  --color-fenix-deep-blue: #08304A;
+  --color-fenix-dark: #03131D;
+
+  --font-sans: "Inter", sans-serif;
+
+  --background-image-glass-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+  --background-image-dark-glass-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+
+  --animate-morph: morph 8s ease-in-out infinite;
+
+  @keyframes morph {
+    0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+    34% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; }
+    67% { border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%; }
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-fenix-ice text-fenix-dark font-sans antialiased overflow-x-hidden selection:bg-fenix-soft-blue selection:text-fenix-deep-blue;
+    overscroll-behavior-y: none;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] relative overflow-hidden;
+  }
+  
+  .glass-panel::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-50 pointer-events-none;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Lenis Recommended CSS */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
