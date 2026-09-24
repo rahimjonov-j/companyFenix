@@ -75,7 +75,7 @@ export const Lifestyle = () => {
         />
         {/* Product image if available */}
         <img
-          src="/filter-hero.jpg"
+          src="/filter-hero.webp"
           alt=""
           loading="lazy"
           decoding="async"

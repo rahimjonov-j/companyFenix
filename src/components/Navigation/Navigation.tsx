@@ -49,7 +49,7 @@ export const Navigation = () => {
         >
           {/* Logo */}
           <a href="#" className="text-2xl font-bold tracking-tight text-white z-50 flex items-center gap-3">
-            <img src="/fenix-logo.jpg" alt="Fenix Logo" className="w-10 h-10 rounded-full object-cover border border-white/10" />
+            <img src="/fenix-logo.webp" alt="Fenix Logo" className="w-10 h-10 rounded-full object-cover border border-white/10" />
             FENIX
           </a>
 

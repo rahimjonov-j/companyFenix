@@ -28,7 +28,7 @@ export const Products = () => {
           <div className="w-full lg:w-1/2 flex justify-center">
             <div className="relative w-full max-w-md aspect-square overflow-hidden perspective-[1000px]">
               <img 
-                src="/filter-hero.jpg" 
+                src="/filter-hero.webp" 
                 alt="Fenix" 
                 className="w-full h-full object-cover mix-blend-screen drop-shadow-[0_20px_40px_rgba(101,216,245,0.2)]"
                 style={{

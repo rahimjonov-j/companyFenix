@@ -5,10 +5,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const STAGES = [
-  { num: '01', title: 'Dastlabki tozalash', desc: 'Yirik zarrachalar va qumni ushlab qoladi.' },
-  { num: '02', title: 'Nozik tozalash', desc: 'Mikroskopik ifloslanishlarni olib tashlaydi.' },
-  { num: '03', title: 'Karbonli himoya', desc: 'Xlor va yoqimsiz hidlarni yo\'q qiladi.' },
-  { num: '04', title: 'Yakuniy tozalash', desc: 'Mutlaq sof va ta\'mli suvni ta\'minlaydi.' },
+  { num: '01', title: 'Cho\'kindi filtri (20 mkr)', desc: 'Yirik zarrachalar, zang va qumni ushlab qoladi.', img: '/stage-1.webp' },
+  { num: '02', title: 'Cho\'kindi filtri (5 mkr)', desc: 'Kichikroq zarrachalarni ushlab qoladi.', img: '/stage-2.webp' },
+  { num: '03', title: 'Neo Sense (Uglerod)', desc: 'Xlor va organik birikmalarni tozalaydi.', img: '/stage-3.webp' },
+  { num: '04', title: 'RO Membrana', desc: 'Teskari osmos orqali 99.9% ifloslanishlarni yo\'qotadi.', img: '/stage-4.webp' },
+  { num: '05', title: 'Inno Sense', desc: 'Suvning ta\'mini yaxshilaydi va hidini ketkazadi.', img: '/stage-5.webp' },
+  { num: '06', title: 'Mineral Sense', desc: 'Suvni kerakli foydali minerallar bilan boyitadi.', img: '/stage-6.webp' },
 ];
 
 export const Technology = () => {
@@ -28,14 +30,14 @@ export const Technology = () => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: 'top top',
-          end: '+=400%',
+          end: '+=600%',
           pin: true,
           scrub: 1,
         }
       });
 
       // Flow water across the screen
-      tl.to(waterFlowRef.current, { width: '100%', duration: 4, ease: 'none' }, 0);
+      tl.to(waterFlowRef.current, { width: '100%', duration: 6, ease: 'none' }, 0);
 
       // Each stage gets 1 unit of timeline
       // Stage 0: 0–1, Stage 1: 1–2, Stage 2: 2–3, Stage 3: 3–4
@@ -85,15 +87,15 @@ export const Technology = () => {
           {STAGES.map((stage, idx) => (
             <div key={idx} className="relative flex flex-col items-center">
               {/* Filter Node */}
-              <div className="tech-stage w-14 h-28 md:w-24 md:h-48 rounded-2xl border border-white/10 flex items-center justify-center transition-all duration-300 relative overflow-hidden bg-black/40 shadow-[inset_0_0_20px_rgba(255,255,255,0.05)]">
+              <div className="tech-stage w-12 h-32 md:w-20 md:h-56 rounded-xl md:rounded-2xl border border-white/10 flex items-center justify-center transition-all duration-300 relative overflow-hidden bg-black/40 shadow-[inset_0_0_20px_rgba(255,255,255,0.05)]">
                 <img 
-                  src="/filter.jpg" 
+                  src={stage.img}
                   alt={stage.title}
                   loading="lazy"
                   decoding="async"
-                  className="absolute inset-0 w-full h-full object-cover mix-blend-screen opacity-90"
+                  className="absolute inset-0 w-full h-full object-cover mix-blend-screen opacity-90 scale-110"
                 />
-                <span className="absolute z-10 text-white/50 font-bold text-xl md:text-4xl mix-blend-overlay drop-shadow-md">{stage.num}</span>
+                <span className="absolute z-10 text-white/50 font-bold text-lg md:text-3xl mix-blend-overlay drop-shadow-md">{stage.num}</span>
               </div>
             </div>
           ))}

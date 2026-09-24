@@ -113,7 +113,7 @@ export const Hero = () => {
             className="relative h-full max-h-[80%] aspect-[3/4] md:aspect-square transform-style-3d mx-auto"
           >
             <img 
-              src="/filter-hero.jpg" 
+              src="/filter-hero.webp" 
               alt="Fenix Water Purifier" 
               fetchPriority="high"
               decoding="async"

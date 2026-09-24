@@ -53,7 +53,7 @@ export const ProductExperience = () => {
       <div className="relative max-w-5xl mx-auto aspect-[16/10] md:aspect-[16/9] rounded-3xl overflow-hidden shadow-2xl">
         
         {/* Product Environment Background */}
-        <div ref={imageRef} className="absolute inset-0 bg-[url('/filter-hero.jpg')] bg-cover bg-center">
+        <div ref={imageRef} className="absolute inset-0 bg-[url('/filter-hero.webp')] bg-cover bg-center">
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
           
           {/* Hotspots */}
