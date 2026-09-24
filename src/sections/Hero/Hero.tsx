@@ -115,10 +115,13 @@ export const Hero = () => {
             <img 
               src="/filter-hero.jpg" 
               alt="Fenix Water Purifier" 
+              fetchPriority="high"
+              decoding="async"
               className="w-full h-full object-cover mix-blend-screen drop-shadow-[0_20px_40px_rgba(101,216,245,0.2)]"
               style={{
                 maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 75%)',
-                WebkitMaskImage: 'radial-gradient(ellipse at center, black 40%, transparent 75%)'
+                WebkitMaskImage: 'radial-gradient(ellipse at center, black 40%, transparent 75%)',
+                willChange: 'transform',
               }}
             />
             

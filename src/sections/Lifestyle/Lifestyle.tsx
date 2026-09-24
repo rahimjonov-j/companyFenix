@@ -6,10 +6,10 @@ import { useIsomorphicLayoutEffect } from 'framer-motion';
 gsap.registerPlugin(ScrollTrigger);
 
 const LABELS = [
-  { text: 'Kompakt o\'lcham', x: '20%', y: '30%' },
-  { text: 'Sokin ishlash', x: '70%', y: '25%' },
-  { text: 'Oson xizmat ko\'rsatish', x: '15%', y: '60%' },
-  { text: 'Premium materiallar', x: '75%', y: '70%' },
+  { text: 'Kompakt o\'lcham', x: '8%', y: '28%' },
+  { text: 'Sokin ishlash', x: '62%', y: '22%' },
+  { text: 'Oson xizmat ko\'rsatish', x: '6%', y: '62%' },
+  { text: 'Premium materiallar', x: '65%', y: '68%' },
 ];
 
 export const Lifestyle = () => {
@@ -21,10 +21,9 @@ export const Lifestyle = () => {
     const ctx = gsap.context(() => {
       // Parallax background
       gsap.fromTo(bgRef.current,
-        { scale: 1, y: '-10%' },
+        { y: '-8%' },
         {
-          scale: 1.1,
-          y: '10%',
+          y: '8%',
           ease: 'none',
           scrollTrigger: {
             trigger: containerRef.current,
@@ -38,17 +37,16 @@ export const Lifestyle = () => {
       // Stagger floating labels
       if (labelsRef.current) {
         gsap.fromTo(labelsRef.current.children,
-          { y: 50, opacity: 0 },
+          { y: 40, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            stagger: 0.2,
+            stagger: 0.15,
             ease: 'power2.out',
             scrollTrigger: {
               trigger: containerRef.current,
               start: 'top center',
-              end: 'center center',
-              scrub: 1,
+              once: true,
             }
           }
         );
@@ -61,16 +59,33 @@ export const Lifestyle = () => {
   return (
     <section ref={containerRef} className="relative h-screen overflow-hidden bg-fenix-dark flex items-center justify-center">
       
-      {/* Background Parallax Image */}
+      {/* Background — deep blue gradient (no external image needed) */}
       <div 
         ref={bgRef} 
-        className="absolute inset-0 w-full h-[120%] -top-[10%] bg-[url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2070')] bg-cover bg-center"
+        className="absolute inset-0 w-full h-[120%] -top-[10%]"
+        style={{
+          background: 'radial-gradient(ellipse at 30% 40%, #0a3d5c 0%, #03131D 50%, #01080f 100%)',
+        }}
       >
-        <div className="absolute inset-0 bg-fenix-dark/40"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-fenix-dark via-transparent to-fenix-dark"></div>
+        {/* Grid overlay for texture */}
+        <div className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(101,216,245,0.15) 60px, rgba(101,216,245,0.15) 61px), repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(101,216,245,0.15) 60px, rgba(101,216,245,0.15) 61px)',
+          }}
+        />
+        {/* Product image if available */}
+        <img
+          src="/filter-hero.jpg"
+          alt=""
+          loading="lazy"
+          decoding="async"
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-screen"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-fenix-dark via-transparent to-fenix-dark" />
       </div>
 
-      <div className="relative z-10 text-center px-6 mt-[-20%]">
+      <div className="relative z-10 text-center px-6">
         <h2 className="text-4xl md:text-5xl lg:text-7xl font-medium tracking-tight text-white max-w-4xl mx-auto drop-shadow-2xl">
           Uyingizga mos keladigan texnologiya.
         </h2>
@@ -84,7 +99,7 @@ export const Lifestyle = () => {
             className="absolute"
             style={{ left: label.x, top: label.y }}
           >
-            <div className="glass-panel px-4 py-2 rounded-full text-white/90 text-sm md:text-base font-medium shadow-xl">
+            <div className="glass-panel px-3 py-1.5 md:px-4 md:py-2 rounded-full text-white/90 text-xs md:text-sm font-medium shadow-xl whitespace-nowrap">
               {label.text}
             </div>
           </div>

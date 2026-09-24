@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+/* Font loaded via preload in index.html for better performance */
 
 @import "tailwindcss";
 
@@ -10,7 +10,7 @@
   --color-fenix-deep-blue: #08304A;
   --color-fenix-dark: #03131D;
 
-  --font-sans: "Inter", sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
 
   --background-image-glass-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
   --background-image-dark-glass-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
@@ -28,10 +28,16 @@
   body {
     @apply bg-fenix-ice text-fenix-dark font-sans antialiased overflow-x-hidden selection:bg-fenix-soft-blue selection:text-fenix-deep-blue;
     overscroll-behavior-y: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply tracking-tight;
+  }
+
+  img {
+    content-visibility: auto;
   }
 }
 
@@ -47,6 +53,12 @@
 
   .text-balance {
     text-wrap: balance;
+  }
+
+  .gpu {
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
   }
 }
 
@@ -69,4 +81,14 @@ html.lenis, html.lenis body {
 
 .lenis.lenis-smooth iframe {
   pointer-events: none;
+}
+
+/* Reduce animations for low-end devices / accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

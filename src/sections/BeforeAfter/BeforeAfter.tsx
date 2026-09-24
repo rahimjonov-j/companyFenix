@@ -17,15 +17,17 @@ export const BeforeAfter = () => {
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => handleMove(e.clientX);
-    const handleTouchMove = (e: TouchEvent) => handleMove(e.touches[0].clientX);
-    
+    const handleTouchMove = (e: TouchEvent) => {
+      e.preventDefault();
+      handleMove(e.touches[0].clientX);
+    };
     const handleUp = () => setIsDragging(false);
 
     if (isDragging) {
-      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('mousemove', handleMouseMove, { passive: true });
       window.addEventListener('touchmove', handleTouchMove, { passive: false });
-      window.addEventListener('mouseup', handleUp);
-      window.addEventListener('touchend', handleUp);
+      window.addEventListener('mouseup', handleUp, { passive: true });
+      window.addEventListener('touchend', handleUp, { passive: true });
     }
 
     return () => {
@@ -53,43 +55,61 @@ export const BeforeAfter = () => {
           onTouchStart={() => setIsDragging(true)}
         >
           
-          {/* After (Right / Background) - Clear Water */}
-          <div className="absolute inset-0 bg-cyan-900 bg-[url('https://images.unsplash.com/photo-1547926180-87a3f4e24eb3?auto=format&fit=crop&q=80&w=2000')] bg-cover bg-center">
-             <div className="absolute inset-0 bg-fenix-cyan/20 mix-blend-overlay"></div>
-             <div className="absolute top-8 right-8 bg-black/40 backdrop-blur-md px-4 py-2 rounded-full text-white text-sm font-medium border border-white/10">
-               TOZALANGAN SUV
-             </div>
+          {/* After — Toza suv (CSS gradient, no external image) */}
+          <div className="absolute inset-0 flex items-center justify-center"
+            style={{ background: 'radial-gradient(ellipse at 60% 50%, #0ea5e9 0%, #0369a1 40%, #082f49 100%)' }}
+          >
+            <div className="absolute inset-0 opacity-20"
+              style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(255,255,255,0.03) 40px, rgba(255,255,255,0.03) 41px), repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,255,255,0.03) 40px, rgba(255,255,255,0.03) 41px)' }}
+            />
+            <div className="absolute top-8 right-8 bg-black/40 backdrop-blur-md px-4 py-2 rounded-full text-white text-sm font-medium border border-white/10">
+              TOZALANGAN SUV
+            </div>
+            {/* Clear water shimmer */}
+            <div className="w-32 h-32 rounded-full opacity-30" style={{ background: 'radial-gradient(circle, rgba(101,216,245,0.8) 0%, transparent 70%)' }} />
           </div>
 
-          {/* Before (Left / Foreground) - Cloudy Water */}
+          {/* Before — Iflos suv (CSS gradient) */}
           <div 
-            className="absolute inset-0 bg-yellow-900/80 bg-[url('https://images.unsplash.com/photo-1547926180-87a3f4e24eb3?auto=format&fit=crop&q=80&w=2000')] bg-cover bg-center filter sepia-[0.3] brightness-75 contrast-75"
-            style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
+            className="absolute inset-0 flex items-center justify-center"
+            style={{
+              clipPath: `inset(0 ${100 - sliderPosition}% 0 0)`,
+              background: 'radial-gradient(ellipse at 40% 50%, #a16207 0%, #78350f 40%, #1c0a00 100%)',
+            }}
           >
-             {/* Fake particles overlay */}
-             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dust.png')] opacity-40 mix-blend-overlay"></div>
-             <div className="absolute top-8 left-8 bg-black/40 backdrop-blur-md px-4 py-2 rounded-full text-white text-sm font-medium border border-white/10">
-               ODDIY SUV
-             </div>
+            {/* Murky particles effect — pure CSS, no external url */}
+            {[...Array(12)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute rounded-full"
+                style={{
+                  width: `${4 + (i % 4) * 3}px`,
+                  height: `${4 + (i % 4) * 3}px`,
+                  left: `${(i * 17 + 5) % 90}%`,
+                  top: `${(i * 23 + 10) % 80}%`,
+                  background: `rgba(${161 + i * 3}, ${107 + i * 2}, ${0}, 0.6)`,
+                  filter: 'blur(1px)',
+                }}
+              />
+            ))}
+            <div className="absolute top-8 left-8 bg-black/40 backdrop-blur-md px-4 py-2 rounded-full text-white text-sm font-medium border border-white/10">
+              ODDIY SUV
+            </div>
           </div>
 
           {/* Slider Handle */}
           <div 
-            className="absolute top-0 bottom-0 w-1 bg-white shadow-[0_0_15px_rgba(255,255,255,0.5)] z-20 pointer-events-none"
+            className="absolute top-0 bottom-0 w-0.5 bg-white shadow-[0_0_15px_rgba(255,255,255,0.5)] z-20 pointer-events-none"
             style={{ left: `${sliderPosition}%`, transform: 'translateX(-50%)' }}
           >
-            {/* Handle Button */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 md:w-14 md:h-14 bg-white/20 backdrop-blur-xl border-2 border-white rounded-full shadow-[0_0_20px_rgba(0,0,0,0.3)] flex items-center justify-center">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="15 18 9 12 15 6"></polyline>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/20 backdrop-blur-xl border-2 border-white rounded-full shadow-[0_0_20px_rgba(0,0,0,0.3)] flex items-center justify-center gap-1">
+              <svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round">
+                <path d="M2 2L8 8L2 14" />
               </svg>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="rotate-180 absolute">
-                <polyline points="15 18 9 12 15 6"></polyline>
+              <svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" style={{ transform: 'scaleX(-1)' }}>
+                <path d="M2 2L8 8L2 14" />
               </svg>
             </div>
-            
-            {/* Glass distortion effect around handle */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-64 md:h-96 bg-gradient-to-r from-transparent via-white/5 to-transparent blur-md"></div>
           </div>
 
         </div>

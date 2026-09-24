@@ -18,10 +18,10 @@ export const FinalCTA = () => {
   return (
     <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-fenix-dark">
       
-      {/* Background Water Surface */}
+      {/* Background — deep ocean gradient, no external image */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&q=80&w=2070')] bg-cover bg-center opacity-30 mix-blend-screen"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-fenix-dark via-fenix-deep-blue/50 to-fenix-dark"></div>
+        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 50% 60%, #0a3d5c 0%, #04182a 50%, #03131D 100%)' }}></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-fenix-dark via-fenix-deep-blue/30 to-fenix-dark"></div>
       </div>
 
       <div className="container relative z-10 px-6 mx-auto text-center flex flex-col items-center">

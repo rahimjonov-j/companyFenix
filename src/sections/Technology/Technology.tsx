@@ -88,7 +88,9 @@ export const Technology = () => {
               <div className="tech-stage w-14 h-28 md:w-24 md:h-48 rounded-2xl border border-white/10 flex items-center justify-center transition-all duration-300 relative overflow-hidden bg-black/40 shadow-[inset_0_0_20px_rgba(255,255,255,0.05)]">
                 <img 
                   src="/filter.jpg" 
-                  alt={stage.title} 
+                  alt={stage.title}
+                  loading="lazy"
+                  decoding="async"
                   className="absolute inset-0 w-full h-full object-cover mix-blend-screen opacity-90"
                 />
                 <span className="absolute z-10 text-white/50 font-bold text-xl md:text-4xl mix-blend-overlay drop-shadow-md">{stage.num}</span>
