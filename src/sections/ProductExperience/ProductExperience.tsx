@@ -46,7 +46,7 @@ export const ProductExperience = () => {
           Fenix bilan tanishing.
         </h2>
         <p className="text-lg text-fenix-deep-blue/70 max-w-2xl mx-auto">
-          Uyingizda ko'zga tashlanmaydigan qilib yaratilgan. E'tiborsiz qoldirish imkonsiz.
+          Oilangiz sog'ligi uchun ixcham joylashuv, mebelingizga ko'rk qo'shuvchi ko'rkam dizayn, premium darajada tozalash, oliy darajadagi serviz xizmat.
         </p>
       </div>
 

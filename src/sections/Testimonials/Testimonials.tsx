@@ -96,7 +96,7 @@ export const Testimonials = () => {
       
       <div className="container relative z-10 mx-auto px-6 text-center mb-16">
         <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight max-w-4xl mx-auto text-balance">
-          Ichadigan narsasiga e'tibor beradigan insonlar tomonidan ishonilgan.
+          Ichayotgan suviga e'tiborli insonlar tomonidan ishonilgan.
         </h2>
       </div>
 
