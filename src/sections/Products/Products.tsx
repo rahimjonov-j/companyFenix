@@ -50,10 +50,10 @@ export const Products = () => {
 
             <ul className="space-y-4 mb-10">
               {[
-                'Smart displey va indikatorlar',
-                'Zanglamaydigan po\'latdan premium kran',
-                'Oson almashtiriladigan filtrlar',
-                'Teskari osmos texnologiyasi'
+                '6 ta bosqichda tozalovchi Reverse Osmosis tizimi',
+                '8 litrli Tanker (7 litr suv, 1 litr bosim uchun havo)',
+                '3.5 atmosferali kuchli Pompa Nasos',
+                'Nerjaveykali qo\'shimcha 2 talik smesitel'
               ].map((spec, i) => (
                 <li key={i} className="flex items-center text-fenix-ice font-medium">
                   <div className="w-2 h-2 rounded-full bg-fenix-cyan mr-4 shadow-[0_0_10px_theme(colors.fenix-cyan)]"></div>

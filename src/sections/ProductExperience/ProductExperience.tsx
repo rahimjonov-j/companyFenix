@@ -7,10 +7,10 @@ import { useIsomorphicLayoutEffect } from 'framer-motion';
 gsap.registerPlugin(ScrollTrigger);
 
 const HOTSPOTS = [
-  { id: 1, x: '35%', y: '40%', title: 'Intellektual displey', desc: 'Suv sifatini doimiy nazorat qiling.' },
-  { id: 2, x: '65%', y: '50%', title: 'Keng hajm', desc: 'Toza suv zaxirasi doim tayyor.' },
-  { id: 3, x: '73%', y: '65%', title: 'Zanglamas po\'lat', desc: 'Yuqori sifatli va xavfsiz kran.' },
-  { id: 4, x: '45%', y: '85%', title: 'Kuchli bosim', desc: 'Har bir tomchida yuqori quvvat.' },
+  { id: 1, x: '35%', y: '40%', title: '6 bosqichli RO', desc: 'Reverse osmosis tizimi orqali tozalash.' },
+  { id: 2, x: '65%', y: '50%', title: '8 litrli Tanker', desc: '7 litr toza suv, 1 litr bosim uchun havo.' },
+  { id: 3, x: '73%', y: '65%', title: '3.5 ATM Pompa', desc: 'Kuchli bosim ta\'minlovchi nasos.' },
+  { id: 4, x: '45%', y: '85%', title: '2 talik Smesitel', desc: 'Zanglamas po\'latdan tayyorlangan kran.' },
 ];
 
 export const ProductExperience = () => {
