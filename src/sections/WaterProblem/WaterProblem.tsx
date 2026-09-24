@@ -5,10 +5,13 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const LABELS = [
-  { text: 'Xlor qoldiqlari',   side: 'left',  top: '22%' },
-  { text: 'Og\'ir metallar',   side: 'right', top: '32%' },
-  { text: 'Mikroorganizmlar',  side: 'left',  top: '52%' },
-  { text: 'Cho\'kindilar',     side: 'right', top: '62%' },
+  { text: 'Xlor',            style: { top: '18%', left: '15%' },  dir: 'left' },
+  { text: 'Mikroblar',       style: { top: '25%', right: '20%' }, dir: 'right' },
+  { text: 'Viruslar',        style: { top: '40%', left: '5%' },   dir: 'left' },
+  { text: 'Taksin',          style: { top: '50%', right: '8%' },  dir: 'right' },
+  { text: 'Bakteriya',       style: { top: '65%', left: '12%' },  dir: 'left' },
+  { text: 'Og\'ir metallar', style: { top: '72%', right: '15%' }, dir: 'right' },
+  { text: 'Parazitlar',      style: { top: '82%', left: '25%' },  dir: 'left' },
 ];
 
 export const WaterProblem = () => {
@@ -101,15 +104,15 @@ export const WaterProblem = () => {
         {LABELS.map((label, i) => (
           <div
             key={i}
-            className={`absolute flex items-center gap-0 ${label.side === 'right' ? 'flex-row-reverse right-[6%] md:right-[10%]' : 'left-[6%] md:left-[10%]'}`}
-            style={{ top: label.top }}
+            className={`absolute flex items-center opacity-0 gap-0 ${label.dir === 'right' ? 'flex-row-reverse' : ''}`}
+            style={label.style}
           >
             {/* Label pill */}
             <div className="text-[11px] md:text-sm font-medium text-white/90 bg-fenix-deep-blue/70 px-3 py-1.5 rounded-full backdrop-blur-md border border-fenix-cyan/30 whitespace-nowrap shadow-lg">
               {label.text}
             </div>
             {/* Connecting line */}
-            <div className={`h-px w-8 md:w-16 bg-gradient-to-r ${label.side === 'right' ? 'from-transparent to-fenix-cyan/50' : 'from-fenix-cyan/50 to-transparent'}`} />
+            <div className={`h-px w-6 md:w-12 bg-gradient-to-r ${label.dir === 'right' ? 'from-transparent to-fenix-cyan/50' : 'from-fenix-cyan/50 to-transparent'}`} />
             {/* Dot */}
             <div className="w-1.5 h-1.5 rounded-full bg-fenix-cyan/70 flex-shrink-0" />
           </div>

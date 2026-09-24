@@ -69,8 +69,13 @@ export const WhyFenix = () => {
     <section id="why-fenix" ref={containerRef} className="relative py-32 bg-fenix-dark text-white overflow-hidden">
       
       {/* Background */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-fenix-deep-blue/20 to-transparent"></div>
+      <div className="absolute inset-0 z-0 bg-fenix-dark">
+        <img 
+          src="/research-lab.jpg" 
+          alt="Fenix Research Laboratory" 
+          className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-luminosity" 
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-fenix-dark via-fenix-deep-blue/70 to-fenix-dark"></div>
       </div>
 
       <div className="container relative mx-auto px-6 md:px-12 z-10 flex flex-col items-center text-center">

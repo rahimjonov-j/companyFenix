@@ -9,8 +9,8 @@ gsap.registerPlugin(ScrollTrigger);
 const HOTSPOTS = [
   { id: 1, x: '35%', y: '40%', title: '6 bosqichli RO', desc: 'Reverse osmosis tizimi orqali tozalash.' },
   { id: 2, x: '65%', y: '50%', title: '8 litrli Tanker', desc: '7 litr toza suv, 1 litr bosim uchun havo.' },
-  { id: 3, x: '73%', y: '65%', title: '3.5 ATM Pompa', desc: 'Kuchli bosim ta\'minlovchi nasos.' },
-  { id: 4, x: '45%', y: '85%', title: '2 talik Smesitel', desc: 'Zanglamas po\'latdan tayyorlangan kran.' },
+  { id: 3, x: '73%', y: '65%', title: 'Ikki yoqli Smesitel', desc: '360° ga buriladigan zanglamas po\'lat. Bir tomoni mineral, bir tomoni toza suv.' },
+  { id: 4, x: '45%', y: '85%', title: '3.5 ATM Pompa', desc: 'Kuchli bosim ta\'minlovchi nasos.' },
 ];
 
 export const ProductExperience = () => {

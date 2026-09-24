@@ -26,14 +26,10 @@ export const FinalCTA = () => {
 
       <div className="container relative z-10 px-6 mx-auto text-center flex flex-col items-center">
         
-        <h2 className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter text-white mb-6 leading-tight">
-          Sizning suvingiz.<br />
-          <span className="text-fenix-cyan text-4xl md:text-6xl lg:text-7xl">Sizning tanlovingiz.</span>
+        <h2 className="text-4xl md:text-6xl lg:text-7xl font-medium tracking-tighter text-white mb-8 leading-tight">
+          Sog'likni <span className="text-fenix-cyan">Boylik</span> deb bilganlar <br className="hidden md:block" />
+          uchun ishlaymiz!!!
         </h2>
-        
-        <p className="text-lg md:text-xl text-fenix-ice/80 mb-12 font-light">
-          Har bir tomchini qadrli qiling.
-        </p>
 
         <div className="flex flex-col sm:flex-row gap-4 items-center">
           {/* Primary CTA with Liquid Ripple */}
