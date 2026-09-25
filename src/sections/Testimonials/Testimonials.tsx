@@ -57,7 +57,7 @@ const TestimonialCard = ({
   return (
     <motion.div
       style={{ left: t.x, top: t.y, y: yPos }}
-      className="absolute w-[300px] md:w-[320px]"
+      className="absolute w-[300px] md:w-[320px] gpu"
     >
       <div className="glass-panel !bg-white/70 p-6 md:p-8 rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.05)] border-white border relative">
         <div className="flex gap-1 mb-4">

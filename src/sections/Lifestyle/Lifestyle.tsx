@@ -62,7 +62,7 @@ export const Lifestyle = () => {
       {/* Background — deep blue gradient (no external image needed) */}
       <div 
         ref={bgRef} 
-        className="absolute inset-0 w-full h-[120%] -top-[10%]"
+        className="absolute inset-0 w-full h-[120%] -top-[10%] gpu"
         style={{
           background: 'radial-gradient(ellipse at 30% 40%, #0a3d5c 0%, #03131D 50%, #01080f 100%)',
         }}
@@ -86,7 +86,7 @@ export const Lifestyle = () => {
       </div>
 
       <div className="relative z-10 text-center px-6">
-        <h2 className="text-4xl md:text-5xl lg:text-7xl font-medium tracking-tight text-white max-w-4xl mx-auto drop-shadow-2xl">
+        <h2 className="text-4xl md:text-5xl lg:text-7xl font-medium tracking-tight text-white max-w-4xl mx-auto drop-shadow-2xl gpu">
           Uyingizga mos keladigan texnologiya.
         </h2>
       </div>
@@ -96,7 +96,7 @@ export const Lifestyle = () => {
         {LABELS.map((label, i) => (
           <div 
             key={i} 
-            className="absolute"
+            className="absolute gpu"
             style={{ left: label.x, top: label.y }}
           >
             <div className="glass-panel px-3 py-1.5 md:px-4 md:py-2 rounded-full text-white/90 text-xs md:text-sm font-medium shadow-xl whitespace-nowrap">

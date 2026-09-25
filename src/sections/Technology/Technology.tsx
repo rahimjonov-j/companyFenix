@@ -25,6 +25,7 @@ export const Technology = () => {
 
       // Set all panels hidden initially
       gsap.set(panels, { opacity: 0, y: 20 });
+      gsap.set(stageElements, { opacity: 0.5 }); // Initial state
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -46,11 +47,11 @@ export const Technology = () => {
         const end = i + 1;
 
         // Activate stage node
-        tl.to(stage, { filter: 'brightness(2)', scale: 1.15, duration: 0.3 }, start)
+        tl.to(stage, { opacity: 1, scale: 1.15, duration: 0.3 }, start)
           // Show this panel
           .to(panels[i], { opacity: 1, y: 0, duration: 0.3 }, start)
           // Deactivate stage node
-          .to(stage, { filter: 'brightness(1)', scale: 1, duration: 0.3 }, end - 0.3)
+          .to(stage, { opacity: 0.5, scale: 1, duration: 0.3 }, end - 0.3)
           // Hide this panel (except last)
           .to(panels[i], { opacity: 0, y: -15, duration: 0.3 }, end - 0.3);
       });
@@ -77,7 +78,7 @@ export const Technology = () => {
         
         {/* Background Pipe / Track */}
         <div className="absolute left-6 right-6 h-2 top-1/2 -translate-y-1/2 bg-white/5 rounded-full overflow-hidden">
-          <div ref={waterFlowRef} className="h-full w-0 bg-gradient-to-r from-fenix-dark via-fenix-deep-blue to-fenix-cyan rounded-full shadow-[0_0_15px_theme(colors.fenix-cyan)] relative">
+          <div ref={waterFlowRef} className="h-full w-0 bg-gradient-to-r from-fenix-dark via-fenix-deep-blue to-fenix-cyan rounded-full shadow-[0_0_15px_theme(colors.fenix-cyan)] relative gpu">
             <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-[0_0_20px_theme(colors.fenix-cyan)]"></div>
           </div>
         </div>
@@ -87,7 +88,7 @@ export const Technology = () => {
           {STAGES.map((stage, idx) => (
             <div key={idx} className="relative flex flex-col items-center">
               {/* Filter Node */}
-              <div className="tech-stage w-12 h-32 md:w-20 md:h-56 rounded-xl md:rounded-2xl border border-white/10 flex items-center justify-center transition-all duration-300 relative overflow-hidden bg-black/40 shadow-[inset_0_0_20px_rgba(255,255,255,0.05)]">
+              <div className="tech-stage gpu w-12 h-32 md:w-20 md:h-56 rounded-xl md:rounded-2xl border border-white/10 flex items-center justify-center transition-all duration-300 relative overflow-hidden bg-black/40 shadow-[inset_0_0_20px_rgba(255,255,255,0.05)]">
                 <img 
                   src={stage.img}
                   alt={stage.title}
@@ -107,12 +108,11 @@ export const Technology = () => {
         {STAGES.map((stage, idx) => (
           <div
             key={idx}
-            className="tech-panel absolute w-[280px] md:w-[420px]"
+            className="tech-panel gpu absolute w-[280px] md:w-[420px]"
           >
             <div className="p-4 md:p-6 rounded-2xl text-center"
               style={{
                 background: 'rgba(255,255,255,0.04)',
-                backdropFilter: 'blur(20px)',
                 border: '1px solid rgba(255,255,255,0.12)',
                 boxShadow: '0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08)'
               }}

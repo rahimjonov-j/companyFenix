@@ -1,12 +1,19 @@
-import { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 export const CustomCursor = () => {
-  const cursorRef = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isPointer, setIsPointer] = useState(false);
   const [cursorText, setCursorText] = useState('');
   const [isVisible, setIsVisible] = useState(false);
+
+  // Use motion values to bypass React render cycle for mouse coordinates
+  const mouseX = useMotionValue(-100);
+  const mouseY = useMotionValue(-100);
+
+  // Smooth springs for cursor movement
+  const springConfig = { damping: 25, stiffness: 400, mass: 0.2 };
+  const smoothX = useSpring(mouseX, springConfig);
+  const smoothY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
     // Disable on touch devices
@@ -15,7 +22,8 @@ export const CustomCursor = () => {
     setIsVisible(true);
 
     const onMouseMove = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY });
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
       
       const target = e.target as HTMLElement;
       
@@ -39,32 +47,39 @@ export const CustomCursor = () => {
       }
     };
 
-    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
     return () => window.removeEventListener('mousemove', onMouseMove);
-  }, []);
+  }, [mouseX, mouseY]);
 
   if (!isVisible) return null;
 
+  const size = cursorText ? 64 : (isPointer ? 24 : 16);
+  const offset = size / 2;
+
   return (
     <motion.div
-      ref={cursorRef}
       className="fixed top-0 left-0 pointer-events-none z-[9999] flex items-center justify-center mix-blend-difference"
+      style={{
+        x: smoothX,
+        y: smoothY,
+        translateX: "-50%",
+        translateY: "-50%",
+        width: size,
+        height: size,
+      }}
       animate={{
-        x: position.x - (cursorText ? 32 : 8),
-        y: position.y - (cursorText ? 32 : 8),
-        width: cursorText ? 64 : (isPointer ? 24 : 16),
-        height: cursorText ? 64 : (isPointer ? 24 : 16),
+        width: size,
+        height: size,
         opacity: 1,
       }}
       transition={{
         type: 'spring',
-        stiffness: 150,
-        damping: 15,
-        mass: 0.1,
+        stiffness: 300,
+        damping: 20,
       }}
     >
       <div 
-        className={`w-full h-full rounded-full border border-white flex items-center justify-center
+        className={`w-full h-full rounded-full border border-white flex items-center justify-center transition-colors duration-300
         ${cursorText ? 'bg-white text-black' : 'bg-transparent'}`}
       >
         {cursorText && (

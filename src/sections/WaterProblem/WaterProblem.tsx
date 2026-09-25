@@ -24,6 +24,18 @@ export const WaterProblem = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      
+      // Infinite smooth wobble using transforms (GPU accelerated) instead of border-radius
+      gsap.to(dropletRef.current, {
+        rotation: 15,
+        scaleX: 1.05,
+        scaleY: 0.95,
+        duration: 4,
+        yoyo: true,
+        repeat: -1,
+        ease: "sine.inOut"
+      });
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
@@ -43,7 +55,7 @@ export const WaterProblem = () => {
       tl.to(text1Ref.current,  { opacity: 0, y: -50, duration: 1 })
         .to(dropletRef.current, { scale: 3, duration: 2 }, '<')
         .to(text2Ref.current,   { opacity: 1, y: 0,  duration: 1 }, '-=1')
-        .to(dropletRef.current, { rotation: 45, duration: 2 }, '-=0.5')
+        .to(dropletRef.current, { scale: 3.5, duration: 2 }, '-=0.5') // Keep rotation running from the infinite tween
         .to(particlesContainerRef.current, { opacity: 1, scale: 1, duration: 1 }, '-=1.5')
         .to(labelsRef.current ? Array.from(labelsRef.current.children) : [], { opacity: 1, x: 0, duration: 0.8, stagger: 0.2 }, '-=1')
         .to(dropletRef.current, { scale: 10, opacity: 0, duration: 1.5 })
@@ -63,13 +75,13 @@ export const WaterProblem = () => {
       <div className="absolute inset-0 flex flex-col items-center justify-center z-30 pointer-events-none px-6">
         <h2
           ref={text1Ref}
-          className="text-4xl md:text-6xl lg:text-7xl font-medium tracking-tight text-center max-w-4xl text-balance drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)]"
+          className="text-4xl md:text-6xl lg:text-7xl font-medium tracking-tight text-center max-w-4xl text-balance drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)] gpu"
         >
           Siz har doim ham suvingizda nima borligini ko'ra olmaysiz.
         </h2>
         <h2
           ref={text2Ref}
-          className="absolute text-4xl md:text-6xl lg:text-7xl font-medium tracking-tight text-center text-fenix-cyan drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)]"
+          className="absolute text-4xl md:text-6xl lg:text-7xl font-medium tracking-tight text-center text-fenix-cyan drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)] gpu"
         >
           Ammo tanangiz buni biladi.
         </h2>
@@ -82,17 +94,17 @@ export const WaterProblem = () => {
           rounded-[40%_60%_70%_30%_/_40%_50%_60%_50%]
           border border-white/10
           shadow-[inset_10px_20px_30px_rgba(255,255,255,0.15),_10px_20px_30px_rgba(0,0,0,0.5)]
-          backdrop-blur-sm
-          animate-[morph_8s_ease-in-out_infinite]
+          bg-white/5
+          gpu
           before:absolute before:inset-2 before:rounded-[40%_60%_70%_30%_/_40%_50%_60%_50%]
           before:bg-gradient-to-br before:from-white/20 before:to-transparent before:pointer-events-none"
       >
         {/* Particles */}
         <div ref={particlesContainerRef} className="absolute inset-0 flex items-center justify-center">
-          <div className="absolute top-1/4  left-1/4  w-3 h-3 bg-green-300/50  rounded-full blur-[1px]" />
-          <div className="absolute bottom-1/3 right-1/4 w-4 h-4 bg-orange-400/60 rounded-sm rotate-45 blur-[1px]" />
-          <div className="absolute top-1/2  left-1/3  w-2 h-6 bg-purple-400/50 rounded-full blur-[1px] rotate-[30deg]" />
-          <div className="absolute bottom-1/4 left-1/2  w-2 h-2 bg-yellow-600/70 rounded-full blur-[0.5px]" />
+          <div className="absolute top-1/4  left-1/4  w-3 h-3 bg-green-300/50  rounded-full" />
+          <div className="absolute bottom-1/3 right-1/4 w-4 h-4 bg-orange-400/60 rounded-sm rotate-45" />
+          <div className="absolute top-1/2  left-1/3  w-2 h-6 bg-purple-400/50 rounded-full rotate-[30deg]" />
+          <div className="absolute bottom-1/4 left-1/2  w-2 h-2 bg-yellow-600/70 rounded-full" />
         </div>
       </div>
 
@@ -104,11 +116,11 @@ export const WaterProblem = () => {
         {LABELS.map((label, i) => (
           <div
             key={i}
-            className={`absolute flex items-center opacity-0 gap-0 ${label.dir === 'right' ? 'flex-row-reverse' : ''}`}
+            className={`absolute flex items-center opacity-0 gap-0 gpu ${label.dir === 'right' ? 'flex-row-reverse' : ''}`}
             style={label.style}
           >
             {/* Label pill */}
-            <div className="text-[11px] md:text-sm font-medium text-white/90 bg-fenix-deep-blue/70 px-3 py-1.5 rounded-full backdrop-blur-md border border-fenix-cyan/30 whitespace-nowrap shadow-lg">
+            <div className="text-[11px] md:text-sm font-medium text-white/90 bg-fenix-deep-blue/90 px-3 py-1.5 rounded-full border border-fenix-cyan/30 whitespace-nowrap shadow-lg">
               {label.text}
             </div>
             {/* Connecting line */}
